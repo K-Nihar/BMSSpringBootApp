@@ -12,7 +12,7 @@ public class CinemaService {
 	@Autowired
 	BmsRepository bmsRepository;
 	
-	public Cinema getCinema(int id) {
+	public Cinema getCinemaById(int id) {
 		return bmsRepository.getCinemaDetails(id);
 	}
 }

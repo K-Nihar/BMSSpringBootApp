@@ -25,6 +25,6 @@ public class CinemasController {
 	
 	@RequestMapping(value="/getCinemaById/{id}",method = RequestMethod.GET,produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Cinema> getCinemaById(@PathVariable String id/*@RequestParam int id*/) {
-		return new ResponseEntity<Cinema>(cinemaService.getCinema(Integer.parseInt(id)),HttpStatus.OK);
+		return new ResponseEntity<Cinema>(cinemaService.getCinemaById(Integer.parseInt(id)),HttpStatus.OK);
 	}
 }
