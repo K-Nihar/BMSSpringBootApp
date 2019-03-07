@@ -1,0 +1,40 @@
+create database bookmyshow;
+use bookmyshow;
+CREATE TABLE `cinemas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `numscreens` int(11) DEFAULT NULL,
+  `location` varchar(100) DEFAULT NULL,
+  `city` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `movie` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(50) DEFAULT NULL,
+  `releasedate` datetime DEFAULT CURRENT_TIMESTAMP,
+  `active` boolean DEFAULT FALSE,  
+  PRIMARY KEY (`id`)
+);
+
+create table screen (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `cinemaid` int(11) NOT NULL,
+  `capacity` int(5),
+  `screenno` int(2),
+  primary key (`id`),  
+  FOREIGN KEY (`cinemaid`) references cinemas(`id`)
+);
+
+create table show (
+  `showid` int(11) NOT NULL AUTO_INCREMENT,
+  `movieid` int(11) NOT NULL,
+  `cinemaid` int(11) NOT NULL,
+  `screenid` int(11) NOT NULL,
+  `showtime` datetime NOT NULL,
+  primary key (`showid`),
+  FOREIGN KEY (`movieid`) REFERENCES movie(`id`),
+  FOREIGN KEY (`cinemaid`) REFERENCES cinemas(`id`),
+  FOREIGN KEY (`screenid`) REFERENCES screen(`id`)
+  );
+
